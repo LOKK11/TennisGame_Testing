@@ -63,6 +63,9 @@ public class TennisGameTest {
 		assertEquals("Score '15 - love' incorrect", "15 - love", game.getScore());
 		game.player2Scored();
 		assertEquals("Score 30 incorrect", "30 - love", game.getScore());
+		game.player2Scored();
+		assertEquals("Score 40 incorrect", "40 - love", game.getScore());
+		
 	}
 	
 	@Test
@@ -91,6 +94,8 @@ public class TennisGameTest {
 		//Arrange
 		TennisGame game = new TennisGame();
 		//Act
+		game.player2Scored();
+		game.player2Scored();
 		game.player1Scored();
 		game.player1Scored();
 		game.player1Scored();
@@ -105,6 +110,8 @@ public class TennisGameTest {
 		//Arrange
 		TennisGame game = new TennisGame();
 		//Act
+		game.player1Scored();
+		game.player1Scored();
 		game.player2Scored();
 		game.player2Scored();
 		game.player2Scored();
@@ -127,11 +134,27 @@ public class TennisGameTest {
 		game.player2Scored();
 		game.player1Scored();
 		assertEquals("Advantage score incorrect", "player1 has advantage", game.getScore());
-		
-		//Act
+		// Test advantage for player2 when player1 has at least 4 points
 		game.player2Scored();
 		game.player2Scored();
 		assertEquals("Advantage score incorrect", "player2 has advantage", game.getScore());
-	}
 		
+		
+		//Arrange
+		game = new TennisGame();
+		//Act
+		game.player2Scored();
+		game.player2Scored();
+		game.player2Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player1Scored();
+		game.player2Scored();
+		assertEquals("Advantage score incorrect", "player2 has advantage", game.getScore());
+		// Test advantage for player1 when player2 has at least 4 points
+		game.player1Scored();
+		game.player1Scored();
+		assertEquals("Advantage score incorrect", "player1 has advantage", game.getScore());
+	}
+			
 }
